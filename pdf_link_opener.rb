@@ -4,7 +4,7 @@ require 'io/console'
 require 'pdf-reader'
 require 'uri'
 
-=begin
+begin
 puts 'What Instructor should we use? (Name is case-sensitive)'
 
 inst = gets.chomp.to_s
@@ -12,11 +12,11 @@ path = 	'/home/josh/'							#'C:\Users\jmcdon39\Brautigam 400.766 China In Afric
 
 f = path + inst + ".pdf"
 
-#`pdftotext #{f} #{f}.tmp; egrep -ao 'https?://[^ ]+' #{f}.tmp >> #{f}.txt`
-=end
+`pdftotext #{f} #{f}.tmp; egrep -ao 'https?://[^ ]+' #{f}.tmp >> #{f}.txt`
+end
 d = []
 e = []
-reader = PDF::Reader.new('/home/josh/Downloads/brautigam.pdf')
+reader = PDF::Reader.new(f)
 a = reader.pages.each do |page|
     c = page.text
 	d << URI.extract(c, "http")
